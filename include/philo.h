@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/03 17:36:37 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/03 18:00:53 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ typedef struct s_args
 	int	time_to_eat;
 	int	time_to_sleep;
 	int	nb_of_loop_philo;
-
-}		t_args;
+}			t_args;
 
 void	manage_philo(int argc, char **argv);
 int	parse_args(int argc, char **argv, t_args *args);
