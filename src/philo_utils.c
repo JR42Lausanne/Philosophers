@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:24:37 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/03 17:41:58 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/04 12:32:02 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ int	ft_atoi(char *str)
 
 	i = 0;
 	res = 0;
-	s = 0;
-	while (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13))
+	s = 1;
+	while ((str[i]) && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
 		i++;
 	if ((str[i] == '-') || (str[i] == '+'))
 	{
@@ -44,9 +44,9 @@ int	ft_atoi(char *str)
 			s = (-1 * 1);
 		i++;
 	}
-	while ((str[i] >= '0') && (str[i] <= '9'))
+	while (str[i] && (str[i] >= '0') && (str[i] <= '9'))
 	{
-		res = res * 10 +(str[i] - '0');
+		res = res * 10 + (str[i] - '0');
 		i++;
 	}
 	return (res * s);
