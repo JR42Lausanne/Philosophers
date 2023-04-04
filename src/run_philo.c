@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 16:37:23 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/03 16:40:46 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/04 11:41:35 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,6 @@
 
 void	manage_philo(int argc, char **argv)
 {
-	
-
+	(void) argc;
+	(void) argv;
 }

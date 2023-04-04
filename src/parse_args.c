@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:01:50 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/03 18:17:04 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/04 11:39:38 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	is_number(char **argv)
 	return (0);
 }
 
-int	parse_args(int argc, char **argv, t_args *args)
+int	parse_args(char **argv, t_args *args)
 {
 	if (is_number(argv))
 	{

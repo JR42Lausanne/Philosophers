@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/03 18:00:53 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/04 11:40:03 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ typedef struct s_args
 }			t_args;
 
 void	manage_philo(int argc, char **argv);
-int	parse_args(int argc, char **argv, t_args *args);
+int		parse_args(char **argv, t_args *args);
 
 //utils
 
 void	ft_puchar_fd(char c, int fd);
 void	ft_putstr_fd(char *str, int fd);
-int	ft_atoi(char *str);
+int		ft_atoi(char *str);
 
 #endif
