@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:01:50 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/04 12:33:19 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/04 15:06:17 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,8 @@ int	parse_args(char **argv, t_args *args, int argc)
 {
 	if (is_number(argv))
 	{
-		printf("in_function\n");
 		args->nb_philo = ft_atoi(argv[1]);
-		printf("nb_philo : %d\n", args->nb_philo);
+		args->nb_forks = ft_atoi(argv[1]);
 		args->time_to_die = ft_atoi(argv[2]);
 		args->time_to_eat = ft_atoi(argv[3]);
 		args->time_to_sleep = ft_atoi(argv[4]);

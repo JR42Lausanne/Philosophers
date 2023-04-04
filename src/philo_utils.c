@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:24:37 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/04 12:32:02 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/04 16:37:21 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,25 +29,28 @@ void	ft_putstr_fd(char *str, int fd)
 
 int	ft_atoi(char *str)
 {
-	int	i;
-	int	res;
-	int	s;
+	int		i;
+	long	res;
+	int		sign;
 
-	i = 0;
 	res = 0;
-	s = 1;
-	while ((str[i]) && (str[i] == ' ' || (str[i] >= 9 && str[i] <= 13)))
+	sign = 1;
+	i = 0;
+	while ((str[i] >= 8 && str[i] <= 13) || str[i] == 32)
 		i++;
-	if ((str[i] == '-') || (str[i] == '+'))
+	if (str[i] == '+' || str[i] == '-')
 	{
 		if (str[i] == '-')
-			s = (-1 * 1);
+			sign = sign * -1;
 		i++;
 	}
-	while (str[i] && (str[i] >= '0') && (str[i] <= '9'))
+	while (str[i] >= '0' && str[i] <= '9')
 	{
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
-	return (res * s);
+	if ((res * sign > INTMAX || res * sign < INTMIN)
+		|| (res == 0))
+		ft_error("invalid argument");
+	return (res * sign);
 }
