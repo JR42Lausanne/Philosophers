@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:59:07 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/04 16:38:33 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/10 15:47:51 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	main(int argc, char *argv[])
 	t_args	*args;
 
 	args = malloc(sizeof(t_args));
+	if (!args)
+		return (NULL);
 	if ((argc < 5) || (argc > 6))
 		ft_error("Numbers of arguments is invalid\n");
 	else if (argc == 5 || argc == 6)

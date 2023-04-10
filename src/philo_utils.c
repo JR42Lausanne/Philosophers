@@ -6,12 +6,13 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:24:37 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/04 16:37:21 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/05 09:36:43 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 #include <unistd.h>
+#include <sys/time.h>
 
 void	ft_putchar_fd(char c, int fd)
 {
@@ -50,7 +51,19 @@ int	ft_atoi(char *str)
 		i++;
 	}
 	if ((res * sign > INTMAX || res * sign < INTMIN)
-		|| (res == 0))
+		|| (res <= 0))
 		ft_error("invalid argument");
 	return (res * sign);
+}
+
+long int	get_time(void)
+{
+	struct timeval	tv;
+	long int		time;
+
+	if (gettimeofday(&tv, NULL) == -1)
+		return (-1);
+	time = tv.tv_sec * 1000;
+	time += tv.tv_usec / 1000;
+	return (time);
 }
