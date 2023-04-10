@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:24:37 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/05 09:36:43 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/10 15:51:30 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,11 @@ int	ft_atoi(char *str)
 long int	get_time(void)
 {
 	struct timeval	tv;
-	long int		time;
+	long int		start_time;
 
 	if (gettimeofday(&tv, NULL) == -1)
 		return (-1);
-	time = tv.tv_sec * 1000;
-	time += tv.tv_usec / 1000;
-	return (time);
+	start_time = tv.tv_sec * 1000;
+	start_time += tv.tv_usec / 1000;
+	return (start_time);
 }
