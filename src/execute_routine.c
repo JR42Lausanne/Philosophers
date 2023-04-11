@@ -6,18 +6,28 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 10:19:39 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/11 18:10:20 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/11 18:40:29 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
+#include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
 
-void	*thread_routine(void *data)
+static void	*thread_routine(void *data)
 {
-	(void) data;
+	t_philo	*philo;
+
+	philo = (t_philo *) data;
+	pthread_mutex_lock(&philo->left_fork);
+	pthread_mutex_lock(&philo->right_fork);
+	usleep(philo->time_to_eat);
+	philo->start_time += philo->time_to_eat;
+	pthread_mutex_unlock(&philo->right_fork);
+	pthread_mutex_unlock(&philo->right_fork);
+	return (NULL);
 }
 
 void	execute_philo(t_philo *philo)
@@ -27,8 +37,8 @@ void	execute_philo(t_philo *philo)
 	i = 0;
 	while (i < philo->id)
 	{
-		philo[i].id = pthread_create(&philo->philo_thread,
-				NULL, thread_routine, NULL);
+		if (pthread_create(&philo[i].philo_thread,
+				NULL, thread_routine, &philo[i]) == -1)
 		i++;
 	}
 }

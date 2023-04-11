@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:24:37 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/10 15:51:30 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/11 18:47:52 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,19 @@ int	ft_atoi(char *str)
 	return (res * sign);
 }
 
-long int	get_time(void)
+int	get_time(void)
 {
 	struct timeval	tv;
-	long int		start_time;
+	static long int	start_time;
+	long int		ts;
 
+	if (start_time == 0)
+		;//setup le start time;
+	else
+	{
+		//calcule le temps maintenant
+		//renvoie la difference avec le debut
+	}
 	if (gettimeofday(&tv, NULL) == -1)
 		return (-1);
 	start_time = tv.tv_sec * 1000;

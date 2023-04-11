@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/11 18:08:56 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/11 18:41:34 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,10 +42,10 @@ typedef struct s_philo
 	int				nb_of_eat;
 }				t_philo;
 
-t_philo	*manage_philo(t_args	*args);
-int		parse_args(char **argv, t_args *args, int argc);
-void	execute_philo(t_philo *philo);
-void	*thread_routine(void *data);
+t_philo		*manage_philo(t_args	*args);
+int			parse_args(char **argv, t_args *args, int argc);
+void		execute_philo(t_philo *philo);
+//void	thread_routine(t_philo *philo);
 
 //utils
 int			ft_error(char *str);
