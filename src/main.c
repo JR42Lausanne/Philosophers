@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:59:07 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/11 09:53:35 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:41:36 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,17 @@ int	ft_error(char *str)
 
 int	main(int argc, char *argv[])
 {
-	t_args	*args;
+	t_args	args;
+	t_philo	*philo;
 
-	args = malloc(sizeof(t_args));
-	if (!args)
-		return (-1);
 	if ((argc < 5) || (argc > 6))
 		ft_error("Numbers of arguments is invalid\n");
 	else if (argc == 5 || argc == 6)
 	{
-		if (!(parse_args(argv, args, argc)))
+		if (!(parse_args(argv, &args, argc)))
 			ft_error("Type of arguments is invalid");
-		manage_philo(args);
+		philo = manage_philo(&args);
+		execute_philo(philo);
 	}
-	free(args);
 	return (0);
 }
