@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   manage_philo.c                                     :+:      :+:    :+:   */
+/*   execute_routine.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/04 14:03:27 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/11 10:18:40 by jlaiti           ###   ########.fr       */
+/*   Created: 2023/04/11 10:19:39 by jlaiti            #+#    #+#             */
+/*   Updated: 2023/04/11 10:21:48 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,26 +15,6 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-void	manage_philo(t_args	*args)
+void	execute_philo(t_philo *philo)
 {
-	t_philo	*philo;
-	int		i;
-
-	i = 0;
-	philo = malloc(sizeof(t_philo) * args->nb_philo);
-	if (!philo)
-		return ;
-	while (i < args->nb_philo)
-	{
-		philo[i].id = i + 1;
-		philo[i].nb_of_eat = 0;
-		philo[i].time_to_eat = args->time_to_eat;
-		philo[i].time_to_sleep = args->time_to_sleep;
-		philo[i].start_time = get_time();
-		philo[i].left_fork = philo[i].left_fork;
-		philo[i].right_fork = philo[i + 1].right_fork;
-		i++;
-	}
-	execute_routine(philo);
 }
-
