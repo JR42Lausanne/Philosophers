@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:03:27 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/11 16:58:42 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/11 17:54:43 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-static pthread_mutex_t	*init_forks(t_args *args)
+static pthread_mutex_t	**init_forks(t_args *args)
 {
-	pthread_mutex_t	*forks;
+	pthread_mutex_t	**forks;
 	int				i;
 
 	i = 0;
@@ -26,7 +26,7 @@ static pthread_mutex_t	*init_forks(t_args *args)
 		return (NULL);
 	while (i < args->nb_forks)
 	{
-		pthread_mutex_init(&forks[i], NULL);
+		pthread_mutex_init(forks[i], NULL);
 		i++;
 	}
 	return (forks);
@@ -35,7 +35,7 @@ static pthread_mutex_t	*init_forks(t_args *args)
 t_philo	*manage_philo(t_args	*args)
 {
 	t_philo			*philo;
-	pthread_mutex_t	*forks;
+	pthread_mutex_t	**forks;
 	int				i;
 
 	i = 0;
@@ -48,7 +48,6 @@ t_philo	*manage_philo(t_args	*args)
 	while (i < args->nb_philo)
 	{
 		philo[i].id = i + 1;
-		philo[i].philo_thread = ; //init thread?
 		philo[i].nb_of_eat = 0;
 		philo[i].time_to_eat = args->time_to_eat;
 		philo[i].time_to_sleep = args->time_to_sleep;
@@ -57,6 +56,6 @@ t_philo	*manage_philo(t_args	*args)
 		philo[i].right_fork = forks[(i + 1) % args->nb_philo];
 		i++;
 	}
-	//free forks, but only the array
+	//	TODO free forks, but only the array
 	return (philo);
 }

@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/11 16:24:20 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/11 18:08:56 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ typedef struct s_philo
 	int				start_time;
 	pthread_t		philo_thread;
 	pthread_t		id_philo_die;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*left_fork;
+	pthread_mutex_t	right_fork;
+	pthread_mutex_t	left_fork;
 	long int		last_meal;
 	int				nb_of_eat;
 }				t_philo;
@@ -45,7 +45,7 @@ typedef struct s_philo
 t_philo	*manage_philo(t_args	*args);
 int		parse_args(char **argv, t_args *args, int argc);
 void	execute_philo(t_philo *philo);
-void	thread_routine(void *data);
+void	*thread_routine(void *data);
 
 //utils
 int			ft_error(char *str);
