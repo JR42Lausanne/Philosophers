@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:03:27 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/11 16:51:55 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/11 16:58:42 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-static pthread_mutex_t	**init_forks(t_args *args)
+static pthread_mutex_t	*init_forks(t_args *args)
 {
 	pthread_mutex_t	*forks;
 	int				i;
@@ -35,7 +35,7 @@ static pthread_mutex_t	**init_forks(t_args *args)
 t_philo	*manage_philo(t_args	*args)
 {
 	t_philo			*philo;
-	pthread_mutex_t	**forks;
+	pthread_mutex_t	*forks;
 	int				i;
 
 	i = 0;
