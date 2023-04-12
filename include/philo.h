@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/12 08:58:28 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/12 14:46:07 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,13 +45,12 @@ typedef struct s_philo
 t_philo		*manage_philo(t_args	*args);
 int			parse_args(char **argv, t_args *args, int argc);
 void		execute_philo(t_philo *philo);
-//void	thread_routine(t_philo *philo);
 
 //utils
 int			ft_error(char *str);
 void		ft_puchar_fd(char c, int fd);
 void		ft_putstr_fd(char *str, int fd);
 int			ft_atoi(char *str);
-long int	get_time(void);
+int			get_time(void);
 
 #endif
