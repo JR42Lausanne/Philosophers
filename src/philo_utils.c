@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:24:37 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/11 18:47:52 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/12 11:17:09 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,18 +60,20 @@ int	get_time(void)
 {
 	struct timeval	tv;
 	static long int	start_time;
-	long int		ts;
+	long int		current_time;
 
-	if (start_time == 0)
-		;//setup le start time;
-	else
-	{
-		//calcule le temps maintenant
-		//renvoie la difference avec le debut
-	}
 	if (gettimeofday(&tv, NULL) == -1)
 		return (-1);
-	start_time = tv.tv_sec * 1000;
-	start_time += tv.tv_usec / 1000;
+	if (start_time == 0)
+	{
+		start_time = tv.tv_sec * 1000;
+		start_time += tv.tv_usec / 1000;
+	}
+	else
+	{
+		current_time = tv.tv_sec * 1000;
+		current_time += tv.tv_usec / 1000;
+		return ((int)(current_time - start_time));
+	}
 	return (start_time);
 }
