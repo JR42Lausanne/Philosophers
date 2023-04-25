@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 10:19:39 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/25 15:06:13 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/25 18:25:03 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,24 +31,27 @@ int	check_is_alive(int *var, pthread_mutex_t *is_alive)
 static void	*thread_routine(void *data)
 {
 	t_philo	*philo;
+	t_table	*table;
 
+	table = (t_table *)data;
 	philo = (t_philo *)data;
 	if (philo->id % 2 == 0)
 		usleep(1000);
-	while (!check_is_alive()
-
-	return ;
+	while (!check_is_alive(&table->stop, &table->is_alive))
+	{
+		activity(philo);
+	}
 }
 
-void	execute_philo(t_philo *philo)
+void	execute_philo(t_data *data)
 {
 	int	i;
 
 	i = 0;
-	while (i < philo->id)
+	while (i < data->philo->id)
 	{
-		if (pthread_create(&philo[i].philo_thread,
-				NULL, thread_routine, &philo[i]) == -1)
+		if (pthread_create(&data->philo[i].philo_thread,
+				NULL, thread_routine, &data->philo[i]) == -1)
 			return ;
 		i++;
 	}

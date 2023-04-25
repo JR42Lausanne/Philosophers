@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:03:27 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/25 14:58:30 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/25 17:53:31 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,31 +42,30 @@ static	void	init_mutex(t_table	*table)
 	table->stop = 0;
 }
 
-t_philo	*manage_philo(t_args	*args)
+t_data	*manage_philo(t_args	*args)
 {
-	t_philo			*philo;
-	t_table			table;
+	t_data			*data;
 	pthread_mutex_t	**forks;
 	int				i;
 
 	i = -1;
-	philo = malloc(sizeof(t_philo) * args->nb_philo);
-	if (!philo)
+	data = malloc(sizeof(t_philo) * args->nb_philo);
+	if (!data)
 		return (NULL);
 	forks = init_forks(args);
 	if (!forks)
 		return (NULL);
-	philo->start_time = get_time();
-	init_mutex(&table);
+	data->philo->start_time = get_time();
+	init_mutex(data->table);
 	while (++i < args->nb_philo)
 	{
-		philo[i].id = i + 1;
-		philo[i].nb_of_eat = 0;
-		philo[i].time_to_eat = args->time_to_eat;
-		philo[i].time_to_sleep = args->time_to_sleep;
-		philo[i].left_fork = forks[i];
-		philo[i].right_fork = forks[(i + 1) % args->nb_philo];
+		data->philo[i].id = i + 1;
+		data->philo[i].nb_of_eat = 0;
+		data->philo[i].time_to_eat = args->time_to_eat;
+		data->philo[i].time_to_sleep = args->time_to_sleep;
+		data->philo[i].left_fork = forks[i];
+		data->philo[i].right_fork = forks[(i + 1) % args->nb_philo];
 	}
 	//	TODO free forks, but only the array
-	return (philo);
+	return (data);
 }

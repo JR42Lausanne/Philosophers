@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/25 15:04:49 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/25 16:35:44 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,15 @@ typedef struct s_table
 	t_philo			*all_philo;
 }				t_table;
 
-t_philo		*manage_philo(t_args	*args);
+typedef struct s_data
+{
+	t_philo	*philo;
+	t_table	*table;
+}				t_data;
+
+t_data		*manage_philo(t_args	*args);
 int			parse_args(char **argv, t_args *args, int argc);
-void		execute_philo(t_philo *philo);
+void		execute_philo(t_data *data);
 int			check_is_alive(int *var, pthread_mutex_t *is_alive);	
 
 //utils
