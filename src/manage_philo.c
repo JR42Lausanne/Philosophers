@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:03:27 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/19 10:51:40 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/25 14:58:30 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,19 +26,30 @@ static pthread_mutex_t	**init_forks(t_args *args)
 		return (NULL);
 	while (i < args->nb_forks)
 	{
-		pthread_mutex_init(forks[i], NULL);
+		if (pthread_mutex_init(forks[i], NULL))
+			return (NULL);
 		i++;
 	}
 	return (forks);
 }
 
+static	void	init_mutex(t_table	*table)
+{
+	if (pthread_mutex_init(&table->write_mutex, NULL))
+		return ;
+	if (pthread_mutex_init(&table->is_alive, NULL))
+		return ;
+	table->stop = 0;
+}
+
 t_philo	*manage_philo(t_args	*args)
 {
 	t_philo			*philo;
+	t_table			table;
 	pthread_mutex_t	**forks;
 	int				i;
 
-	i = 0;
+	i = -1;
 	philo = malloc(sizeof(t_philo) * args->nb_philo);
 	if (!philo)
 		return (NULL);
@@ -46,7 +57,8 @@ t_philo	*manage_philo(t_args	*args)
 	if (!forks)
 		return (NULL);
 	philo->start_time = get_time();
-	while (i < args->nb_philo)
+	init_mutex(&table);
+	while (++i < args->nb_philo)
 	{
 		philo[i].id = i + 1;
 		philo[i].nb_of_eat = 0;
@@ -54,7 +66,6 @@ t_philo	*manage_philo(t_args	*args)
 		philo[i].time_to_sleep = args->time_to_sleep;
 		philo[i].left_fork = forks[i];
 		philo[i].right_fork = forks[(i + 1) % args->nb_philo];
-		i++;
 	}
 	//	TODO free forks, but only the array
 	return (philo);
