@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/26 14:43:17 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/26 14:46:53 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ typedef struct s_philo
 	pthread_t		id_philo_die;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
-	long int		last_meal;
+	int				last_meal;
 	int				nb_of_eat;
 }				t_philo;
 

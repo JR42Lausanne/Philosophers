@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:47:03 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/26 14:43:23 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/26 15:32:32 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,9 @@ static int	philo_eat(t_philo *philo, t_table *table)
 	print_msg(time_stamp, "has taken left fork\n", philo, table);
 	print_msg(time_stamp, "is eating\n", philo, table);
 	if (change_status(&philo->nb_of_eat, philo->nb_of_eat + 1,
-				&table->mutex ) == -1)
+			&table->mutex) == -1)
 		return (-1);
-	custom_sleep(	
+	custom_sleep(philo->last_meal + philo->time_to_eat, table);
 	if (pthread_mutex_unlock(philo->right_fork))
 		return (-1);
 	if (pthread_mutex_unlock(philo->left_fork))
@@ -38,27 +38,23 @@ static int	philo_eat(t_philo *philo, t_table *table)
 
 static int	philo_think(t_philo *philo, t_table *table)
 {
+	int	time_stamp;
 
+	time_stamp = get_time();
+	print_msg(time_stamp, "is sleeping\n", philo, table);
+	custom_sleep(time_stamp + philo->time_to_sleep, table);
+	return (0);
 }
 
 void	activity(t_philo *philo, t_table *table)
 {
 	if (philo_eat(philo, table) == -1)
 		return ;
+	if (!check_is_alive(&table->stop, &table->mutex))
+		return ;
 	if (philo_think(philo, table) == -1)
 		return ;
-
-
-
+	if (!check_is_alive(&table->stop, &table->mutex))
+		return ;
+	print_msg(get_time(), "is sleeping\n", philo, table);
 }
-	
-}
-print_stamp(philo->t_last_meal, "is eating\n", philo);
-	if (safe_var_change(&philo->eat_count, &philo->mut_count,
-			philo->eat_count + 1) == -1)
-		return (-1);
-	custom_sleep(philo->t_last_meal + philo->info_tab->time_to[TIME_TO_EAT],
-		philo->info_tab);
-	if (fork_action(philo, 1) == -1)
-		return (-1);
-	return (0);	
