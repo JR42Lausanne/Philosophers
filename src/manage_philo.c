@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:03:27 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/25 17:53:31 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/26 14:22:50 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static	void	init_mutex(t_table	*table)
 {
 	if (pthread_mutex_init(&table->write_mutex, NULL))
 		return ;
-	if (pthread_mutex_init(&table->is_alive, NULL))
+	if (pthread_mutex_init(&table->mutex, NULL))
 		return ;
 	table->stop = 0;
 }

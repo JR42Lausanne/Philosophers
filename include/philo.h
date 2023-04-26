@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/26 14:08:22 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/26 14:43:17 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ typedef struct s_data
 t_data		*manage_philo(t_args	*args);
 int			parse_args(char **argv, t_args *args, int argc);
 void		execute_philo(t_data *data);
-int			check_is_alive(int *var, pthread_mutex_t *is_alive);
+int			check_is_alive(int *var, pthread_mutex_t *mutex);
 void		activity(t_philo *philo, t_table *table);	
 int			change_status(int *var, int new_var, pthread_mutex_t *is_alive);
 
@@ -69,6 +69,7 @@ void		ft_puchar_fd(char c, int fd);
 void		ft_putstr_fd(char *str, int fd);
 int			ft_atoi(char *str);
 int			get_time(void);
+void		custom_sleep(int time, t_table *table);
 void		print_msg(int time, char *msg, t_philo *philo, t_table *table);
 
 #endif
