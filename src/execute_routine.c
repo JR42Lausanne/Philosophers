@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 10:19:39 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/25 18:25:03 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/26 11:02:51 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	*thread_routine(void *data)
 		usleep(1000);
 	while (!check_is_alive(&table->stop, &table->is_alive))
 	{
-		activity(philo);
+		activity(philo, table);
 	}
 }
 

@@ -6,26 +6,36 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:47:03 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/25 18:27:07 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/26 12:11:15 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 #include <pthread.h>
 
-int	philo_eat(t_philo *philo)
+
+
+static int	philo_eat(t_philo *philo, t_table *table)
 {
-	
+	int	start_time;
+
+	start_time = get_time();
+	if (pthread_mutex_lock(philo->right_fork))
+		return (-1);
+	if (pthread_mutex_lock(philo->left_fork))
+		return (-1);
+	print_msg(start
+}
+
+void	activity(t_philo *philo, t_table *table)
+{
+	if (philo_eat(philo, table) == -1)
+		return ;
+
+
 
 }
 
-void activity(t_philo *philo)
-{
-
-
-}
-
-void	activity(t_philo *ph)
 {
 	pthread_mutex_lock(&ph->l_f);
 	pthread_mutex_lock(&ph->pa->write_mutex);
