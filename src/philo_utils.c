@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:24:37 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/26 11:02:16 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/26 13:48:50 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,17 @@ int	get_time(void)
 		return ((int)(current_time - start_time));
 	}
 	return (start_time);
+}
+
+void	custom_sleep(int time, t_table *table)
+{
+	int	start_time;
+
+	start_time = get_time();
+	while (!check_is_alive(&table->stop, &table->is_alive))
+	{
+		while ((get_time() - start_time) < time)
+			usleep(time / 10);
+	}
+	return ;
 }

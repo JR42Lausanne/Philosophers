@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 10:19:39 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/26 11:02:51 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/26 14:15:56 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,26 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-int	check_is_alive(int *var, pthread_mutex_t *is_alive)
+int	check_is_alive(int *var, pthread_mutex_t *mutex)
 {
 	int	ret;
 
-	if (pthread_mutex_lock(is_alive))
+	if (pthread_mutex_lock(mutex))
 		return (-1);
 	ret = *var;
-	if (pthread_mutex_unlock(is_alive))
+	if (pthread_mutex_unlock(mutex))
 		return (-1);
 	return (ret);
+}
+
+int	change_status(int *var, int new_var, pthread_mutex_t *mutex)
+{
+	if (pthread_mutex_lock(mutex))
+		return (-1);
+	*var = new_var;
+	if (pthread_mutex_unlock(mutex))
+		return (-1);
+	return (0);
 }
 
 static void	*thread_routine(void *data)
@@ -37,7 +47,7 @@ static void	*thread_routine(void *data)
 	philo = (t_philo *)data;
 	if (philo->id % 2 == 0)
 		usleep(1000);
-	while (!check_is_alive(&table->stop, &table->is_alive))
+	while (!check_is_alive(&table->stop, &table->mutex))
 	{
 		activity(philo, table);
 	}

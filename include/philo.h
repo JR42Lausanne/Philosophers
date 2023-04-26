@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/26 11:22:25 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/26 14:08:22 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_philo
 typedef struct s_table
 {
 	pthread_mutex_t	write_mutex;
-	pthread_mutex_t	is_alive;
+	pthread_mutex_t	mutex;
 	int				stop;
 	t_philo			*all_philo;
 }				t_table;
@@ -61,6 +61,7 @@ int			parse_args(char **argv, t_args *args, int argc);
 void		execute_philo(t_data *data);
 int			check_is_alive(int *var, pthread_mutex_t *is_alive);
 void		activity(t_philo *philo, t_table *table);	
+int			change_status(int *var, int new_var, pthread_mutex_t *is_alive);
 
 //utils
 int			ft_error(char *str);

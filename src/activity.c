@@ -6,31 +6,38 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:47:03 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/26 12:11:15 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/26 13:28:42 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 #include <pthread.h>
 
-
-
 static int	philo_eat(t_philo *philo, t_table *table)
 {
-	int	start_time;
+	int	time_stamp;
 
-	start_time = get_time();
+	time_stamp = get_time();
 	if (pthread_mutex_lock(philo->right_fork))
 		return (-1);
 	if (pthread_mutex_lock(philo->left_fork))
 		return (-1);
-	print_msg(start
+	print_msg(time_stamp, "has taken right fork\n", philo, table);
+	print_msg(time_stamp, "has taken left fork\n", philo, table);
+	print_msg(time_stamp, "is eating\n", philo, table);
+	if (pthread_mutex_unlock(philo->right_fork))
+		return (-1);
+	if (pthread_mutex_unlock(philo->left_fork))
+		return (-1);
+	return (0);
 }
 
 void	activity(t_philo *philo, t_table *table)
 {
 	if (philo_eat(philo, table) == -1)
 		return ;
+	if (philo_think(philo, table) == -1)
+		return ;	
 
 
 
