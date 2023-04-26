@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/26 14:46:53 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/26 17:13:31 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,16 @@ typedef struct s_args
 	int	nb_of_loop_philo;
 }			t_args;
 
+typedef struct s_table
+{
+	pthread_mutex_t	write_mutex;
+	pthread_mutex_t	mutex;
+	int				stop;
+}				t_table;
+
 typedef struct s_philo
 {
+	int				nb_philo;
 	int				id;
 	int				time_to_eat;
 	int				time_to_sleep;
@@ -40,15 +48,8 @@ typedef struct s_philo
 	pthread_mutex_t	*left_fork;
 	int				last_meal;
 	int				nb_of_eat;
+	t_table			*table;
 }				t_philo;
-
-typedef struct s_table
-{
-	pthread_mutex_t	write_mutex;
-	pthread_mutex_t	mutex;
-	int				stop;
-	t_philo			*all_philo;
-}				t_table;
 
 typedef struct s_data
 {

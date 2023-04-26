@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 10:19:39 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/26 14:15:56 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/26 17:18:15 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,14 +43,15 @@ static void	*thread_routine(void *data)
 	t_philo	*philo;
 	t_table	*table;
 
-	table = (t_table *)data;
-	philo = (t_philo *)data;
+	philo = data;
+	table = philo->table;
 	if (philo->id % 2 == 0)
 		usleep(1000);
 	while (!check_is_alive(&table->stop, &table->mutex))
 	{
 		activity(philo, table);
 	}
+	return (NULL);
 }
 
 void	execute_philo(t_data *data)
@@ -58,7 +59,7 @@ void	execute_philo(t_data *data)
 	int	i;
 
 	i = 0;
-	while (i < data->philo->id)
+	while (i < data->philo[0].nb_philo)
 	{
 		if (pthread_create(&data->philo[i].philo_thread,
 				NULL, thread_routine, &data->philo[i]) == -1)
