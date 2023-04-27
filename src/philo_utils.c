@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:24:37 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/26 15:10:10 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/27 10:19:16 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,15 +78,15 @@ int	get_time(void)
 	return (start_time);
 }
 
-void	custom_sleep(int time, t_table *table)
+void	custom_sleep(int time_ms, t_table *table)
 {
 	int	start_time;
 
 	start_time = get_time();
 	while (!check_is_alive(&table->stop, &table->mutex)
-		&& (get_time() - start_time < time))
+		&& (get_time() - start_time < time_ms))
 	{
-		usleep(time / 10);
+		usleep(100);
 	}
 	return ;
 }

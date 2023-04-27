@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:59:07 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/26 17:17:28 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/27 12:22:08 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,19 @@ int	ft_error(char *str)
 	ft_putstr_fd("error: ", 2);
 	ft_putstr_fd(str, 2);
 	return (-1);
+}
+
+static void	join_all_philos(t_data *data)
+{
+	int	i;
+
+	i = 0;
+	while (i < data->philo[0].nb_philo)
+	{
+		if (pthread_join(data->philo[i].philo_thread, NULL))
+			return ;
+		i++;
+	}
 }
 
 int	main(int argc, char *argv[])
@@ -34,6 +47,7 @@ int	main(int argc, char *argv[])
 			ft_error("Type of arguments is invalid");
 		data = manage_philo(&args);
 		execute_philo(data);
+		join_all_philos(data);
 	}
 	return (0);
 }

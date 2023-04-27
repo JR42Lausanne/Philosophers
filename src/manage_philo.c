@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:03:27 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/26 17:15:32 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/27 12:21:46 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,25 @@ static pthread_mutex_t	**init_forks(t_args *args)
 	return (forks);
 }
 
+static pthread_mutex_t	**init_local_mutex(t_args *args)
+{
+	pthread_mutex_t	**local_mutex;
+	int				i;
+
+	i = 0;
+	local_mutex = malloc(sizeof(pthread_mutex_t *) * args->nb_philo);
+	if (!local_mutex)
+		return (NULL);
+	while (i < args->nb_philo)
+	{
+		local_mutex[i] = malloc(sizeof(pthread_mutex_t));
+		if (pthread_mutex_init(local_mutex[i], NULL))
+			return (NULL);
+		i++;
+	}
+	return (local_mutex);
+}
+
 static	void	init_mutex(t_table	*table)
 {
 	if (pthread_mutex_init(&table->write_mutex, NULL))
@@ -47,6 +66,7 @@ t_data	*manage_philo(t_args	*args)
 {
 	t_data			*data;
 	pthread_mutex_t	**forks;
+	pthread_mutex_t	**local_mutex;
 	int				start_time;
 	int				i;
 
@@ -55,6 +75,7 @@ t_data	*manage_philo(t_args	*args)
 	if (!data)
 		return (NULL);
 	forks = init_forks(args);
+	local_mutex = init_local_mutex(args);
 	if (!forks)
 		return (NULL);
 	data->philo = malloc(sizeof(t_philo) * args->nb_philo);
@@ -68,9 +89,10 @@ t_data	*manage_philo(t_args	*args)
 	while (++i < args->nb_philo)
 	{
 		data->philo[i].nb_philo = args->nb_philo;
-		data->philo[i].start_time = start_time;
+		data->philo[i].start_time = start_time; //TODO remove start time from philos
 		data->philo[i].id = i + 1;
 		data->philo[i].nb_of_eat = 0;
+		data->philo[i].last_meal = 0;
 		data->philo[i].time_to_eat = args->time_to_eat;
 		data->philo[i].time_to_sleep = args->time_to_sleep;
 		data->philo[i].left_fork = forks[i];
