@@ -6,7 +6,7 @@
 #    By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/03 15:19:43 by jlaiti            #+#    #+#              #
-#    Updated: 2023/04/26 15:37:41 by jlaiti           ###   ########.fr        #
+#    Updated: 2023/04/27 14:52:16 by jlaiti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ SRC =	parse_args.c		\
 		activity.c			\
 		execute_routine.c	\
 		print_message.c		\
+		handle_philo.c		\
 	
 
 SRC_DIR = $(addprefix src/, $(SRC))

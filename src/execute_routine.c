@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 10:19:39 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/27 11:00:03 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/27 14:38:11 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,14 +45,14 @@ static void	*thread_routine(void *data)
 
 	philo = data;
 	table = philo->table;
-	printf("philo %d started at %d\n", philo->id, get_time());
+	//printf("philo %d started at %d\n", philo->id, get_time());
 	if (philo->id % 2 == 0)
 		usleep(1000);
 	while (!check_is_alive(&table->stop, &table->mutex))
 	{
 		activity(philo, table);
 	}
-	printf("philo %d finished at %d\n", philo->id, get_time());
+	//printf("philo %d finished at %d\n", philo->id, get_time());
 	return (NULL);
 }
 

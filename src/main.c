@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:59:07 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/27 12:22:08 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/27 14:20:37 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,9 @@ static void	join_all_philos(t_data *data)
 
 int	main(int argc, char *argv[])
 {
-	t_args	args;
-	t_data	*data;
+	t_args		args;
+	t_data		*data;
+	pthread_t	manager_id;
 
 	if ((argc < 5) || (argc > 6))
 		ft_error("Numbers of arguments is invalid\n");
@@ -47,6 +48,10 @@ int	main(int argc, char *argv[])
 			ft_error("Type of arguments is invalid");
 		data = manage_philo(&args);
 		execute_philo(data);
+		if (pthread_create(&manager_id, NULL, handle_philo, data))
+			return (-1);
+		if (pthread_join(manager_id, NULL))
+			return (-1);
 		join_all_philos(data);
 	}
 	return (0);

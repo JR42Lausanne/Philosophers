@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/27 12:16:56 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/27 14:43:02 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,8 @@ typedef struct s_philo
 	int				time_to_eat;
 	int				time_to_sleep;
 	int				start_time;
+	int				philo_alive;
 	pthread_t		philo_thread;
-	pthread_t		id_philo_die;
 	pthread_mutex_t	*right_fork;
 	pthread_mutex_t	*left_fork;
 	pthread_mutex_t	*local_mutex;
@@ -73,5 +73,6 @@ int			ft_atoi(char *str);
 int			get_time(void);
 void		custom_sleep(int time, t_table *table);
 void		print_msg(int time, char *msg, t_philo *philo, t_table *table);
+void		*handle_philo(void *arg);
 
 #endif

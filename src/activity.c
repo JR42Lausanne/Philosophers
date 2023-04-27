@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:47:03 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/27 11:10:01 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/27 14:51:20 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ static int	philo_eat(t_philo *philo, t_table *table)
 	print_msg(get_time(), "has taken left fork\n", philo, table);
 	print_msg(get_time(), "is eating\n", philo, table);
 	if (change_status(&philo->nb_of_eat, philo->nb_of_eat + 1,
-			&table->mutex) == -1)
+			philo->local_mutex) == -1)
 		return (-1);
 	if (change_status(&philo->last_meal, get_time(),
-			&table->mutex) == -1)
+			philo->local_mutex) == -1)
 		return (-1);
 	custom_sleep(philo->time_to_eat, table);
 	if (pthread_mutex_unlock(philo->right_fork))

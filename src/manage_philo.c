@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:03:27 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/27 12:21:46 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/27 14:40:45 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static pthread_mutex_t	**init_local_mutex(t_args *args)
 	return (local_mutex);
 }
 
-static	void	init_mutex(t_table	*table)
+static	void	init_mutex_table(t_table	*table)
 {
 	if (pthread_mutex_init(&table->write_mutex, NULL))
 		return ;
@@ -84,7 +84,7 @@ t_data	*manage_philo(t_args	*args)
 	data->table = malloc(sizeof(t_table));
 	if (!data->table)
 		return (NULL);
-	init_mutex(data->table);
+	init_mutex_table(data->table);
 	start_time = get_time();
 	while (++i < args->nb_philo)
 	{
@@ -93,12 +93,15 @@ t_data	*manage_philo(t_args	*args)
 		data->philo[i].id = i + 1;
 		data->philo[i].nb_of_eat = 0;
 		data->philo[i].last_meal = 0;
+		data->philo[i].philo_alive = args->time_to_die;
 		data->philo[i].time_to_eat = args->time_to_eat;
 		data->philo[i].time_to_sleep = args->time_to_sleep;
+		data->philo[i].local_mutex = local_mutex[i];
 		data->philo[i].left_fork = forks[i];
 		data->philo[i].right_fork = forks[(i + 1) % args->nb_philo];
 		data->philo[i].table = data->table;
 	}
-	//	TODO free forks, but only the array
+	free(local_mutex);
+	free(forks);
 	return (data);
 }
