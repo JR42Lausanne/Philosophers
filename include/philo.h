@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/27 14:43:02 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/04/27 16:23:55 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ typedef struct s_table
 {
 	pthread_mutex_t	write_mutex;
 	pthread_mutex_t	mutex;
+	pthread_mutex_t	mutex_die;
 	int				stop;
 }				t_table;
 
