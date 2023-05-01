@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:47:03 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/27 15:57:25 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/01 16:28:59 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,7 @@ static int	philo_eat(t_philo *philo, t_table *table)
 
 static int	philo_think(t_philo *philo, t_table *table)
 {
-	int	time_stamp;
-
-	time_stamp = get_time();
-	print_msg(time_stamp, "is sleeping\n", philo, table);
+	print_msg(get_time(), "is sleeping\n", philo, table);
 	custom_sleep(philo->time_to_sleep, table);
 	return (0);
 }
@@ -51,11 +48,11 @@ void	activity(t_philo *philo, t_table *table)
 {
 	if (philo_eat(philo, table) == -1)
 		return ;
-	if (check_is_alive(&table->stop, &table->mutex))
+	if (check_is_alive(&table->stop, &table->mutex_alive))
 		return ;
 	if (philo_think(philo, table) == -1)
 		return ;
-	if (check_is_alive(&table->stop, &table->mutex))
+	if (check_is_alive(&table->stop, &table->mutex_alive))
 		return ;
 	print_msg(get_time(), "is thinking\n", philo, table);
 }

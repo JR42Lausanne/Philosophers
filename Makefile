@@ -6,12 +6,12 @@
 #    By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/03 15:19:43 by jlaiti            #+#    #+#              #
-#    Updated: 2023/04/27 16:26:45 by jlaiti           ###   ########.fr        #
+#    Updated: 2023/05/01 17:23:11 by jlaiti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -g -pthread -fsanitize=thread
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=thread
 RM = rm -f
 
 SRC =	parse_args.c		\
@@ -37,7 +37,7 @@ INCLUDES = -Iinclude/
 all : ${NAME}
 
 $(NAME): ${OBJ}
-	${CC} ${FLAGS} -o ${NAME} ${OBJ}
+	${CC} -pthread ${FLAGS} -o ${NAME} ${OBJ}
 
 
 clean:

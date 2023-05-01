@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 10:19:39 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/27 15:57:39 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/01 17:12:07 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,24 @@
 #include <stdlib.h>
 #include <pthread.h>
 
-int	check_is_alive(int *var, pthread_mutex_t *mutex)
+int	check_is_alive(int *var, pthread_mutex_t *mutex_alive)
 {
 	int	ret;
 
-	if (pthread_mutex_lock(mutex))
+	if (pthread_mutex_lock(mutex_alive))
 		return (-1);
 	ret = *var;
-	if (pthread_mutex_unlock(mutex))
+	if (pthread_mutex_unlock(mutex_alive))
 		return (-1);
 	return (ret);
 }
 
-int	change_status(int *var, int new_var, pthread_mutex_t *mutex)
+int	change_status(int *var, int new_var, pthread_mutex_t *mutex_status)
 {
-	if (pthread_mutex_lock(mutex))
+	if (pthread_mutex_lock(mutex_status))
 		return (-1);
 	*var = new_var;
-	if (pthread_mutex_unlock(mutex))
+	if (pthread_mutex_unlock(mutex_status))
 		return (-1);
 	return (0);
 }
@@ -46,8 +46,8 @@ static void	*thread_routine(void *data)
 	philo = data;
 	table = philo->table;
 	if (philo->id % 2 == 0)
-		usleep(1000);
-	while (!check_is_alive(&table->stop, &table->mutex))
+		usleep(500);
+	while (!check_is_alive(&table->stop, &table->mutex_alive))
 	{
 		activity(philo, table);
 	}

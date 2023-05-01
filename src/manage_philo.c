@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:03:27 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/27 16:23:36 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/01 16:50:28 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,9 @@ static	void	init_mutex_table(t_table	*table)
 {
 	if (pthread_mutex_init(&table->write_mutex, NULL))
 		return ;
-	if (pthread_mutex_init(&table->mutex, NULL))
+	if (pthread_mutex_init(&table->mutex_alive, NULL))
+		return ;
+	if (pthread_mutex_init(&table->mutex_status, NULL))
 		return ;
 	if (pthread_mutex_init(&table->mutex_die, NULL))
 		return ;
@@ -69,7 +71,6 @@ t_data	*manage_philo(t_args	*args)
 	t_data			*data;
 	pthread_mutex_t	**forks;
 	pthread_mutex_t	**local_mutex;
-	int				start_time;
 	int				i;
 
 	i = -1;
@@ -87,11 +88,9 @@ t_data	*manage_philo(t_args	*args)
 	if (!data->table)
 		return (NULL);
 	init_mutex_table(data->table);
-	start_time = get_time();
 	while (++i < args->nb_philo)
 	{
 		data->philo[i].nb_philo = args->nb_philo;
-		data->philo[i].start_time = start_time; //TODO remove start time from philos
 		data->philo[i].id = i + 1;
 		data->philo[i].nb_of_eat = 0;
 		data->philo[i].last_meal = 0;

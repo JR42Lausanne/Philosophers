@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/27 16:23:55 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/01 16:50:16 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct s_args
 typedef struct s_table
 {
 	pthread_mutex_t	write_mutex;
-	pthread_mutex_t	mutex;
+	pthread_mutex_t	mutex_alive;
+	pthread_mutex_t	mutex_status;
 	pthread_mutex_t	mutex_die;
 	int				stop;
 }				t_table;
@@ -42,7 +43,6 @@ typedef struct s_philo
 	int				id;
 	int				time_to_eat;
 	int				time_to_sleep;
-	int				start_time;
 	int				philo_alive;
 	pthread_t		philo_thread;
 	pthread_mutex_t	*right_fork;
@@ -62,9 +62,9 @@ typedef struct s_data
 t_data		*manage_philo(t_args	*args);
 int			parse_args(char **argv, t_args *args, int argc);
 void		execute_philo(t_data *data);
-int			check_is_alive(int *var, pthread_mutex_t *mutex);
+int			check_is_alive(int *var, pthread_mutex_t *mutex_alive);
 void		activity(t_philo *philo, t_table *table);	
-int			change_status(int *var, int new_var, pthread_mutex_t *is_alive);
+int			change_status(int *var, int new_var, pthread_mutex_t *mutex_status);
 
 //utils
 int			ft_error(char *str);

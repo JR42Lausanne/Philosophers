@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:59:40 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/27 10:31:02 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/01 17:15:35 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,12 @@
 
 void	print_msg(int time_ms, char *msg, t_philo *philo, t_table *table)
 {
-	if (!check_is_alive(&table->stop, &table->mutex))
+	(void) time_ms; //TODO remove time_ms from arguments
+	if (!check_is_alive(&table->stop, &table->mutex_alive))
 	{
 		if (pthread_mutex_lock(&table->write_mutex) == -1)
 			return ;
-		printf("%d: philosopher %d - %s", time_ms,
+		printf("%d: philosopher %d - %s", get_time(),
 			philo->id, msg);
 		if (pthread_mutex_unlock(&table->write_mutex) == -1)
 			return ;
