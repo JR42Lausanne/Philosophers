@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:47:03 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/01 16:28:59 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 11:26:45 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,11 +48,11 @@ void	activity(t_philo *philo, t_table *table)
 {
 	if (philo_eat(philo, table) == -1)
 		return ;
-	if (check_is_alive(&table->stop, &table->mutex_alive))
+	if (check_is_alive(&table->stop, &table->mutex_stop))
 		return ;
 	if (philo_think(philo, table) == -1)
 		return ;
-	if (check_is_alive(&table->stop, &table->mutex_alive))
+	if (check_is_alive(&table->stop, &table->mutex_stop))
 		return ;
 	print_msg(get_time(), "is thinking\n", philo, table);
 }

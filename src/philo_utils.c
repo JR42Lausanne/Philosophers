@@ -6,13 +6,14 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:24:37 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/01 17:06:54 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 11:28:32 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/philo.h"
 #include <unistd.h>
 #include <sys/time.h>
+#include <limits.h>
 
 void	ft_putchar_fd(char c, int fd)
 {
@@ -50,7 +51,7 @@ int	ft_atoi(char *str)
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
-	if ((res * sign > INTMAX || res * sign < INTMIN)
+	if ((res * sign > INT_MAX || res * sign < INT_MIN)
 		|| (res <= 0))
 		ft_error("invalid argument");
 	return (res * sign);
@@ -83,10 +84,10 @@ void	custom_sleep(int time_ms, t_table *table)
 	int	start_time;
 
 	start_time = get_time();
-	while (!check_is_alive(&table->stop, &table->mutex_alive)
+	while (!check_is_alive(&table->stop, &table->mutex_stop)
 		&& (get_time() - start_time < time_ms))
 	{
-		usleep(10);
+		usleep(100);
 	}
 	return ;
 }

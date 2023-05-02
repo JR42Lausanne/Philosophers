@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:01:50 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/04 15:06:17 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 11:15:10 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	parse_args(char **argv, t_args *args, int argc)
 		args->time_to_die = ft_atoi(argv[2]);
 		args->time_to_eat = ft_atoi(argv[3]);
 		args->time_to_sleep = ft_atoi(argv[4]);
+		args->nb_of_loop_philo = -1;
 		if (argc == 6)
 			args->nb_of_loop_philo = ft_atoi(argv[5]);
 		return (1);

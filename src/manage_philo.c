@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:03:27 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/01 16:50:28 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 11:24:08 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,7 @@ static	void	init_mutex_table(t_table	*table)
 {
 	if (pthread_mutex_init(&table->write_mutex, NULL))
 		return ;
-	if (pthread_mutex_init(&table->mutex_alive, NULL))
-		return ;
-	if (pthread_mutex_init(&table->mutex_status, NULL))
+	if (pthread_mutex_init(&table->mutex_stop, NULL))
 		return ;
 	if (pthread_mutex_init(&table->mutex_die, NULL))
 		return ;
@@ -88,6 +86,7 @@ t_data	*manage_philo(t_args	*args)
 	if (!data->table)
 		return (NULL);
 	init_mutex_table(data->table);
+	data->table->philo_loop = args->nb_of_loop_philo;
 	while (++i < args->nb_philo)
 	{
 		data->philo[i].nb_philo = args->nb_philo;

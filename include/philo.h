@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/01 16:50:16 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 11:26:01 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 # define PHILO_H
 
 # include <pthread.h>
-
-# define INTMAX +2147483647
-# define INTMIN -2147483648
 
 typedef struct s_args
 {
@@ -31,10 +28,10 @@ typedef struct s_args
 typedef struct s_table
 {
 	pthread_mutex_t	write_mutex;
-	pthread_mutex_t	mutex_alive;
-	pthread_mutex_t	mutex_status;
+	pthread_mutex_t	mutex_stop;
 	pthread_mutex_t	mutex_die;
 	int				stop;
+	int				philo_loop;
 }				t_table;
 
 typedef struct s_philo
@@ -62,9 +59,9 @@ typedef struct s_data
 t_data		*manage_philo(t_args	*args);
 int			parse_args(char **argv, t_args *args, int argc);
 void		execute_philo(t_data *data);
-int			check_is_alive(int *var, pthread_mutex_t *mutex_alive);
+int			check_is_alive(int *var, pthread_mutex_t *mutex_stop);
 void		activity(t_philo *philo, t_table *table);	
-int			change_status(int *var, int new_var, pthread_mutex_t *mutex_status);
+int			change_status(int *var, int new_var, pthread_mutex_t *mutex_stop);
 
 //utils
 int			ft_error(char *str);
