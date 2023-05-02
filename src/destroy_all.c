@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/02 15:10:39 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/02 16:29:22 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 19:02:06 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ void	destroy_all(t_data *data)
 	while (i < data->philo->nb_philo)
 	{
 		pthread_mutex_destroy(&data->philo->left_fork[i]);
-		free(&data->philo->left_fork[i]);
+		//free(&data->philo->left_fork[i]);
 		pthread_mutex_destroy(&data->philo->right_fork[i]);
-		free(&data->philo->right_fork[i]);
+		//free(&data->philo->right_fork[i]);
 		pthread_mutex_destroy(&data->philo->local_mutex[i]);
 		//free(&data->philo->local_mutex[i]);
 		i++;
