@@ -6,12 +6,12 @@
 #    By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/03 15:19:43 by jlaiti            #+#    #+#              #
-#    Updated: 2023/05/02 13:23:55 by jlaiti           ###   ########.fr        #
+#    Updated: 2023/05/02 16:15:54 by jlaiti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -g -fsanitize=thread
+FLAGS = -Wall -Wextra -Werror -g 
 RM = rm -f
 
 SRC =	parse_args.c		\
@@ -22,6 +22,7 @@ SRC =	parse_args.c		\
 		execute_routine.c	\
 		print_message.c		\
 		handle_philo.c		\
+		destroy_all.c		\
 	
 
 SRC_DIR = $(addprefix src/, $(SRC))

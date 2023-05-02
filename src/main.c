@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:59:07 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/02 13:01:15 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 16:49:10 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	main(int argc, char *argv[])
 		if (pthread_join(manager_id, NULL))
 			return (-1);
 		join_all_philos(data);
+		//destroy_all(data);
 	}
 	return (0);
 }

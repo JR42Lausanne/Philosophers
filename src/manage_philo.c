@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:03:27 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/02 11:24:08 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 17:20:00 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,28 @@ static	void	init_mutex_table(t_table	*table)
 	table->stop = 0;
 }
 
+void	initialise_value(t_args *args, t_data *data,
+		pthread_mutex_t *local_mutex, pthread_mutex_t *forks)
+{
+	int	i;
+
+	i = -1;
+	while (++i < args->nb_philo)
+	{
+		data->philo[i].nb_philo = args->nb_philo;
+		data->philo[i].id = i + 1;
+		data->philo[i].nb_of_eat = 0;
+		data->philo[i].last_meal = 0;
+		data->philo[i].philo_alive = args->time_to_die;
+		data->philo[i].time_to_eat = args->time_to_eat;
+		data->philo[i].time_to_sleep = args->time_to_sleep;
+		data->philo[i].local_mutex = &local_mutex[i];
+		data->philo[i].left_fork = &forks[i];
+		data->philo[i].right_fork = &forks[(i + 1) % args->nb_philo];
+		data->philo[i].table = data->table;
+	}
+}
+
 t_data	*manage_philo(t_args	*args)
 {
 	t_data			*data;
@@ -87,20 +109,7 @@ t_data	*manage_philo(t_args	*args)
 		return (NULL);
 	init_mutex_table(data->table);
 	data->table->philo_loop = args->nb_of_loop_philo;
-	while (++i < args->nb_philo)
-	{
-		data->philo[i].nb_philo = args->nb_philo;
-		data->philo[i].id = i + 1;
-		data->philo[i].nb_of_eat = 0;
-		data->philo[i].last_meal = 0;
-		data->philo[i].philo_alive = args->time_to_die;
-		data->philo[i].time_to_eat = args->time_to_eat;
-		data->philo[i].time_to_sleep = args->time_to_sleep;
-		data->philo[i].local_mutex = local_mutex[i];
-		data->philo[i].left_fork = forks[i];
-		data->philo[i].right_fork = forks[(i + 1) % args->nb_philo];
-		data->philo[i].table = data->table;
-	}
+	initialise_value(args, data, *local_mutex, *forks);
 	free(local_mutex);
 	free(forks);
 	return (data);

@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:57:05 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/02 11:26:01 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 15:49:38 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int			get_time(void);
 void		custom_sleep(int time, t_table *table);
 void		print_msg(int time, char *msg, t_philo *philo, t_table *table);
 void		*handle_philo(void *arg);
+void		destroy_all(t_data *data);
 
 #endif
