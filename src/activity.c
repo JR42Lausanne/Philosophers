@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:47:03 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/02 11:26:45 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 13:23:27 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 
 static int	philo_eat(t_philo *philo, t_table *table)
 {
-	if (pthread_mutex_lock(philo->right_fork))
-		return (-1);
-	print_msg(get_time(), "has taken right fork\n", philo, table);
 	if (pthread_mutex_lock(philo->left_fork))
 		return (-1);
 	print_msg(get_time(), "has taken left fork\n", philo, table);
+	if (pthread_mutex_lock(philo->right_fork))
+		return (-1);
+	print_msg(get_time(), "has taken right fork\n", philo, table);
 	print_msg(get_time(), "is eating\n", philo, table);
 	if (change_status(&philo->nb_of_eat, philo->nb_of_eat + 1,
 			philo->local_mutex) == -1)
@@ -30,9 +30,9 @@ static int	philo_eat(t_philo *philo, t_table *table)
 			philo->local_mutex) == -1)
 		return (-1);
 	custom_sleep(philo->time_to_eat, table);
-	if (pthread_mutex_unlock(philo->right_fork))
-		return (-1);
 	if (pthread_mutex_unlock(philo->left_fork))
+		return (-1);
+	if (pthread_mutex_unlock(philo->right_fork))
 		return (-1);
 	return (0);
 }

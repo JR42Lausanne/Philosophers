@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 17:24:37 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/02 11:28:32 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 13:13:19 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,6 @@ int	ft_atoi(char *str)
 		res = res * 10 + (str[i] - '0');
 		i++;
 	}
-	if ((res * sign > INT_MAX || res * sign < INT_MIN)
-		|| (res <= 0))
-		ft_error("invalid argument");
 	return (res * sign);
 }
 

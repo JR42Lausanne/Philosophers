@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:59:40 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/02 11:54:26 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 12:57:40 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	print_msg(int time_ms, char *msg, t_philo *philo, t_table *table)
 			return ;
 		if (!should_stop && msg[0] != 'A')
 			printf("%d: philosopher %d - %s", get_time(),
-			philo->id, msg);
+				philo->id, msg);
 		else if (msg[0] == 'A')
 			printf("%s\n", msg);
 		if (msg[0] == 'd' || msg[0] == 'A')

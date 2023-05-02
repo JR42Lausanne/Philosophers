@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 13:43:50 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/02 11:56:03 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 12:57:15 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,8 @@ void	*handle_philo(void *arg)
 		if (min_nb_of_eat >= data->table->philo_loop
 			&& data->table->philo_loop != -1)
 		{
-			print_msg(0, "All the philosophers have eaten enough time", NULL, data->table);
+			print_msg(0, "All the philosophers have eaten enough time",
+				NULL, data->table);
 			change_status(&data->table->stop, 1,
 				&data->table->mutex_stop);
 		}

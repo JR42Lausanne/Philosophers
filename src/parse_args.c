@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 18:01:50 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/02 11:15:10 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 13:12:04 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static int	is_number(char **argv)
 	i = 1;
 	while (argv[i])
 	{
+		if (ft_atoi(argv[i]) <= 0)
+			return (0);
 		j = 0;
 		while (argv[i][j])
 		{

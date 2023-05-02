@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/03 15:59:07 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/04/27 14:20:37 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/02 13:01:15 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ int	main(int argc, char *argv[])
 	else if (argc == 5 || argc == 6)
 	{
 		if (!(parse_args(argv, &args, argc)))
-			ft_error("Type of arguments is invalid");
+		{
+			ft_error("Type of arguments is invalid\n");
+			return (-1);
+		}
 		data = manage_philo(&args);
 		execute_philo(data);
 		if (pthread_create(&manager_id, NULL, handle_philo, data))
