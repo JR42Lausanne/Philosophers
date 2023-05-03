@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 14:47:03 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/02 13:23:27 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/03 12:21:51 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,11 @@ static int	philo_eat(t_philo *philo, t_table *table)
 	if (pthread_mutex_lock(philo->left_fork))
 		return (-1);
 	print_msg(get_time(), "has taken left fork\n", philo, table);
+	if (philo->right_fork == philo->left_fork)
+	{
+		pthread_mutex_unlock(philo->left_fork);
+		return (-1);
+	}
 	if (pthread_mutex_lock(philo->right_fork))
 		return (-1);
 	print_msg(get_time(), "has taken right fork\n", philo, table);

@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/04 14:03:27 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/03 11:09:48 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/03 11:59:21 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static pthread_mutex_t	**init_forks(t_args *args)
 	while (i < args->nb_forks)
 	{
 		forks[i] = malloc(sizeof(pthread_mutex_t));
+		if (!forks[i])
+			return (NULL);
 		if (pthread_mutex_init(forks[i], NULL))
 			return (NULL);
 		i++;
@@ -46,6 +48,8 @@ static pthread_mutex_t	**init_local_mutex(t_args *args)
 	while (i < args->nb_philo)
 	{
 		local_mutex[i] = malloc(sizeof(pthread_mutex_t));
+		if (!local_mutex[i])
+			return (NULL);
 		if (pthread_mutex_init(local_mutex[i], NULL))
 			return (NULL);
 		i++;

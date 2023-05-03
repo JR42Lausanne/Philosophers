@@ -6,12 +6,12 @@
 #    By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/04/03 15:19:43 by jlaiti            #+#    #+#              #
-#    Updated: 2023/05/03 11:03:10 by jlaiti           ###   ########.fr        #
+#    Updated: 2023/05/03 13:54:55 by jlaiti           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 CC = gcc
-FLAGS = -Wall -Wextra -Werror -g #-fsanitize=thread
+FLAGS = -Wall -Wextra -Werror -g
 RM = rm -f
 
 SRC =	parse_args.c		\
