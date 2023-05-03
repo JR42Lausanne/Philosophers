@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:59:40 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/02 12:57:40 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/03 09:28:43 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,12 @@ void	print_msg(int time_ms, char *msg, t_philo *philo, t_table *table)
 	{
 		if (pthread_mutex_lock(&table->write_mutex) == -1)
 			return ;
-		if (!should_stop && msg[0] != 'A')
+		if (!should_stop && msg[0] != 'E')
 			printf("%d: philosopher %d - %s", get_time(),
 				philo->id, msg);
-		else if (msg[0] == 'A')
+		else if (msg[0] == 'E')
 			printf("%s\n", msg);
-		if (msg[0] == 'd' || msg[0] == 'A')
+		if (msg[0] == 'd' || msg[0] == 'E')
 			should_stop = 1;
 		if (pthread_mutex_unlock(&table->write_mutex) == -1)
 			return ;

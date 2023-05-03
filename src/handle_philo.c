@@ -6,7 +6,7 @@
 /*   By: jlaiti <jlaiti@student.42lausanne.ch>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 13:43:50 by jlaiti            #+#    #+#             */
-/*   Updated: 2023/05/02 19:00:06 by jlaiti           ###   ########.fr       */
+/*   Updated: 2023/05/03 09:25:45 by jlaiti           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,26 +46,24 @@ void	*handle_philo(void *arg)
 	t_data	*data;
 	int		i;
 	int		last_meal;
-	int		min_nb_of_eat;
+	int		min_eat;
 	int		ph_tt_die;
 
 	data = arg;
 	while (!check_is_alive(&data->table->stop, &data->table->mutex_stop))
 	{
 		i = -1;
-		min_nb_of_eat = INT_MAX;
+		min_eat = INT_MAX;
 		while (++i < data->philo[0].nb_philo)
 		{
 			update_last_meal(data, &ph_tt_die, &last_meal, &i);
 			if (get_time() - last_meal >= ph_tt_die)
 				check_philo_die(data);
-			check_philo_eat(data, &min_nb_of_eat, &i);
+			check_philo_eat(data, &min_eat, &i);
 		}
-		if (min_nb_of_eat >= data->table->philo_loop
-			&& data->table->philo_loop != -1)
+		if (min_eat >= data->table->philo_loop && data->table->philo_loop != -1)
 		{
-			print_msg(0, "All the philosophers have eaten enough time",
-				NULL, data->table);
+			print_msg(0, "Everyone has eaten once", NULL, data->table);
 			change_status(&data->table->stop, 1, &data->table->mutex_stop);
 		}
 	}
